@@ -1,0 +1,36 @@
+プロジェクト作成
+laravel new XXXX
+
+サーバー実行
+php artisan serve
+
+コントローラー作成
+php artisan make:controller XXXXController
+
+モデル作成
+php artisan make:model XXXX
+
+マイグレーション作成
+php artisan make:migration create_XXXX_table
+php artisan make:migration rename_変更前のカラム名_to_変更後のカラム名_on_テーブル名_table --table=テーブル名
+
+マイグレーション作成
+php artisan migrate
+
+マイグレーションロールバック
+php artisan migrate:rollback
+
+マイグレーションリフレッシュ
+php artisan migrate:refresh
+
+Seeder作成
+php artisan make:seeder XXXXTableSeeder
+
+Seeder実行
+php artisan db:seed
+
+特定のSeederのみ実行
+php artisan db:seed --class=XXXXTableSeeder
+
+scssコンパイル
+sass scssファイル名 cssファイル名
