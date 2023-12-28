@@ -1,23 +1,19 @@
-FROM php:8.2-fpm
-COPY php.ini /usr/local/etc/php/
+FROM php:8.2-apache
 
-RUN apt-get update \
-  && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev \
-  && docker-php-ext-install zip pdo_mysql
+RUN apt-get -y update 
+RUN apt-get -y upgrade
+RUN apt-get install -y wget
 
-#Composer install
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/local/bin/composer
+# ドキュメントルートを変更する
+ENV APACHE_DOCUMENT_ROOT='/var/www/public'
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-
-ENV COMPOSER_HOME /composer
-
-ENV PATH $PATH:/composer/vendor/bin
-
-
+# コンテナログイン時のパスを指定
 WORKDIR /var/www
 
-RUN composer global require "laravel/installer"
+# install-php-extensions をインストール
+#ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+#RUN chmod +x /usr/local/bin/install-php-extensions
+
+# PHP のエクステンションをインストール
+#RUN install-php-extensions opcache intl gd exif imagick mysqli pdo_mysql redis xdebug
