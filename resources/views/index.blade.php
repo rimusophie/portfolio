@@ -1,1 +1,19 @@
-テスト
+@extends(Constants::LAYOUT_FILE_BASE)
+@section(Constants::LAYOUT_SECTION_TITLE, 'rimusophie - ポートフォリオ')
+@section(Constants::LAYOUT_SECTION_MAIN)
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>使用技術</th>
+                <th>業務経験期間</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>VC++</td>
+                <td>9年</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
