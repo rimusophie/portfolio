@@ -11,13 +11,13 @@
 </head>
 <body class="background">
 <header>
-	@include('templates.header')
+	{{-- @include('templates.header') --}}
 </header>
 <main role="main">
-@yield('main')
+@yield(Constants::LAYOUT_SECTION_MAIN)
 </main>
 <footer>
-	@include('templates.footer')
+	{{--  @include('templates.footer') --}}
 </footer>
 </body>
 </html>
