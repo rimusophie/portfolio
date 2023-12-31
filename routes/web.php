@@ -16,3 +16,4 @@ use App\Http\Controllers as RootCtrl;
 
 Route::get('/',[RootCtrl\IndexController::class, 'index']);
 Route::get('/skillsheet-index',[RootCtrl\SkillSheetController::class, 'index']);
+Route::get('/skills-index',[RootCtrl\SkillController::class, 'index']);
