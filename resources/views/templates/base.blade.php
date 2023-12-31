@@ -14,7 +14,7 @@
 	@include('templates.header')
 </header>
 <main role="main">
-@yield('main')
+@yield(Constants::LAYOUT_SECTION_MAIN)
 </main>
 <footer>
 	@include('templates.footer')

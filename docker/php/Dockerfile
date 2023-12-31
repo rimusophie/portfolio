@@ -1,12 +1,18 @@
 FROM php:8.2-apache
 
 RUN apt-get -y update 
-RUN apt-get -y upgrade
 RUN apt-get install -y wget
+
+# Laravelのルーティングを有効にするため
+RUN a2enmod rewrite
+
+# docker phpにはmysql用のドライバがないため追加
+RUN docker-php-ext-install pdo_mysql
 
 # ドキュメントルートを変更する
 ENV APACHE_DOCUMENT_ROOT='/var/www/public'
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+
 
 # コンテナログイン時のパスを指定
 WORKDIR /var/www
