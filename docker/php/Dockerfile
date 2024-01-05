@@ -12,9 +12,14 @@ RUN docker-php-ext-install pdo_mysql
 # composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# あとでexecで入らないとだめ？
+#RUN composer require laravel/ui
+
 # npmをインストール
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
+#RUN apt-get install -y nodejs
+#RUN apt-get install -y npm
+#RUN npm i @vitejs/plugin-vue --save-dev
+#RUN chmod -R 777 storage bootstrap/cache
 
 # コンテナ内で作業する際のカレンとディレクトリの指定
 WORKDIR /var/www/html
