@@ -1,5 +1,7 @@
 FROM php:8.2-apache
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 RUN apt-get -y update 
 RUN apt-get install -y wget
 
@@ -11,15 +13,6 @@ RUN docker-php-ext-install pdo_mysql
 
 # composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# あとでexecで入らないとだめ？
-#RUN composer require laravel/ui
-
-# npmをインストール
-#RUN apt-get install -y nodejs
-#RUN apt-get install -y npm
-#RUN npm i @vitejs/plugin-vue --save-dev
-#RUN chmod -R 777 storage bootstrap/cache
 
 # コンテナ内で作業する際のカレンとディレクトリの指定
 WORKDIR /var/www/html
@@ -33,10 +26,3 @@ EXPOSE 5173
 
 # コンテナログイン時のパスを指定
 WORKDIR /var/www
-
-# install-php-extensions をインストール
-#ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-#RUN chmod +x /usr/local/bin/install-php-extensions
-
-# PHP のエクステンションをインストール
-#RUN install-php-extensions opcache intl gd exif imagick mysqli pdo_mysql redis xdebug
