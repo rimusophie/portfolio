@@ -1,7 +1,5 @@
 FROM php:8.2-apache
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
 RUN apt-get -y update 
 RUN apt-get install -y wget
 
