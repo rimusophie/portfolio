@@ -230,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Constants' => App\Util\Constants::class,   // Constantsクラス
+        'Constants' => App\Util\PortfolioConstants::class,   // PortfolioConstants
     ],
 
 ];

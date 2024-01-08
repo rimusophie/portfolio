@@ -1,0 +1,37 @@
+@use "common";
+
+// 文字縁
+// 文字縁位置
+$text-shadow-pos-outline: 1px;
+
+// 文字縁位置(負)
+$text-shadow-pos-outline-rev: -1px;
+
+// 文字縁ぼかし
+$text-shadow-pos-outline-blur: 4px;
+
+// 文字縁なし
+$text-shadow-pos-none: 0px;
+
+// 文字光
+@mixin text-lighting($color) {
+text-shadow : 
+        $text-shadow-pos-outline      $text-shadow-pos-outline      $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-outline-rev  $text-shadow-pos-outline      $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-outline      $text-shadow-pos-outline-rev  $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-outline-rev  $text-shadow-pos-outline-rev  $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-outline      $text-shadow-pos-none       $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-none       $text-shadow-pos-outline      $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-outline-rev  $text-shadow-pos-none       $text-shadow-pos-outline-blur $color,
+        $text-shadow-pos-none       $text-shadow-pos-outline-rev  $text-shadow-pos-outline-blur $color;
+}
+
+// 罫線丸め度
+$border-radius: 6px;
+$border-radius-small: 2px;
+
+.rms {
+    .background {
+        background-color: purple;
+    }
+}

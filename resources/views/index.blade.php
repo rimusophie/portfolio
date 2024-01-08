@@ -7,3 +7,4 @@
         <li><a href="/skills-index">スキルマスタ一覧</a></li>
     </ul>
 </div>
+@endsection
