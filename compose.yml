@@ -1,17 +1,17 @@
 services:
-  # サーバーとPHP
-  php8.2-apache:
+  app:
     image: php:8.2-apache
-    container_name: php8.2-apache
+    container_name: app
     build: ./docker/php
     ports:
       - 8080:80
+      - 5173:5173
     volumes:
       - .:/var/www
+      - node_modules:/var/www/node_modules
     depends_on:
       - db
 
-  # データベース
   db:
     image: mysql:5.7
     container_name: db
@@ -28,7 +28,6 @@ services:
     ports:
       - 3306:3306
 
-  # データベースGUI操作用
   phpmyadmin:
     image: phpmyadmin
     depends_on:
@@ -39,3 +38,5 @@ services:
       - PMA_PASSWORD=root
     ports:
       - 3001:80
+volumes:
+  node_modules:
