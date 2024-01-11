@@ -1,40 +1,58 @@
-<script>
+<script lang="ts">
 import axios from 'axios';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 
-export default {
-    data() {
-        return {
-            skills: [],
-            is_loading: true,
-            is_maintenance: false,
-            error_message: '',
-        }
-    },
-    methods: {
-        getAllRecords() {
+interface Skill {
+    id: string
+    name: string
+}
+class SkillIndex {
+    skills: Skill[] = [];
+    is_loading: boolean = true;
+    is_maintenance: boolean = false;
+    error_message: string = '';
+}
+export default defineComponent({
+    setup(props, context) {
+        const skillIndex = reactive(new SkillIndex());
+
+        onMounted(() => {
+            getAllRecords();
+        });
+
+        // スキル一覧を取得
+        const getAllRecords = (): void => {
             axios.get('/api/skills-index')
             .then((res) => {
-                this.skills = res.data.skills;
-                this.is_loading = false;
-                this.is_maintenance = res.data.is_maintenance;
+                skillIndex.skills = res.data.skills;
+                skillIndex.is_loading = false;
+                skillIndex.is_maintenance = res.data.is_maintenance;
             })
             .catch((res) => {
                 console.log(res.response.data.message);
-                this.is_loading = false;
-                this.error_message = res.response.data.message;
+                skillIndex.is_loading = false;
+                skillIndex.error_message = res.response.data.message;
             });
-        },
-        btnClickEdit(id) {
-            alert(id);
-        },
-        btnClickDelete(id) {
+        }
+
+        // 編集ボタンを押下
+        const btnClickEdit = (id: string): void => {
             alert(id);
         }
+
+        // 削除ボタンを押下
+        const btnClickDelete = (id: string): void => {
+            alert(id);
+        }
+
+        return {
+            getAllRecords,
+            btnClickEdit,
+            btnClickDelete,
+            ...toRefs(skillIndex),
+        }
     },
-    mounted() {
-        this.getAllRecords();
-    }
-}
+})
 </script>
 
 <template>
@@ -46,6 +64,7 @@ export default {
             <p>Reading...</p>
         </div>
 
+        <!-- スキル一覧 -->
         <table>
             <thead>
                 <td>ID</td>
