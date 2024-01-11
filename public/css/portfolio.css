@@ -1,0 +1,36 @@
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 1.6rem;
+}
+
+.header-layout {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 40px;
+  position: fixed;
+  top: 0;
+  z-index: 2147483647;
+}
+
+.footer-layout {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  margin-top: 40px;
+}
+
+.page-layout {
+  letter-spacing: 1px;
+  width: 940px;
+  margin: 0 auto;
+  margin-top: 140px;
+}
+
+/*# sourceMappingURL=portfolio.css.map */

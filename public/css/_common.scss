@@ -1,0 +1,77 @@
+// 標準フォントサイズ
+$font-size-std: 1.6rem;
+
+// フォント正規化
+$font-normalized: 62.5%;
+
+// 標準フォントサイズ
+$font-size-std: 1.6rem;
+
+html {
+    width: 100%;
+    height: 100%;
+    font: {
+        size: $font-normalized;;
+    }
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font: {
+      size: $font-size-std;
+    }
+}
+
+// ヘッダーフッターの高さ
+$hf-height: 100px;
+
+// ヘッダーの余白
+$header-margin-bottom: 40px;
+
+// フッターの余白
+$footer-margin-top: 40px;
+
+@mixin z-index-last {
+    z-index: 2147483647;
+}
+// ヘッダー固定
+@mixin header-fixed {
+    position: fixed;
+    top: 0;
+    @include z-index-last();
+}
+// ヘッダー固定位置調整
+@mixin header-fixed-page {
+    margin-top: ($hf-height + $header-margin-bottom);
+}
+
+// ヘッダー枠レイアウト
+.header-layout {
+    width: 100%;
+    height: $hf-height;
+    margin-bottom: $header-margin-bottom;
+    @include header-fixed();
+  }
+  
+  // フッター枠レイアウト
+  .footer-layout {
+    width: 100%;
+    height: $hf-height;
+    position: relative;
+    margin-top: $footer-margin-top;
+  }
+
+// 文字間隔
+$page-letter-spacing: 1px;
+
+// ページの幅
+$page-width: 940px;
+
+// ページレイアウト
+.page-layout {
+    letter-spacing: $page-letter-spacing;
+    width: $page-width;
+    margin: 0 auto;
+    @include header-fixed-page();
+  }

@@ -1,7 +1,5 @@
 FROM php:8.2-apache
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
 RUN apt-get -y update 
 RUN apt-get install -y wget
 
@@ -15,7 +13,7 @@ RUN docker-php-ext-install pdo_mysql
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # コンテナ内で作業する際のカレンとディレクトリの指定
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 # ドキュメントルートを変更する
 ENV APACHE_DOCUMENT_ROOT='/var/www/public'
