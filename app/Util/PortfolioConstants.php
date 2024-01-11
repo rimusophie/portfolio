@@ -53,7 +53,7 @@ class PortfolioConstants
 
     public const VAR_NAME_ERROR = 'error';
 
-    public const MSG_EXCEPTION = 'システムエラーが発生しました';
+    public const MSG_EXCEPTION = '不明なエラーが発生しました';
 
     // CSSクラス
     public const CSS_CLASS_BACKGROUND = 'background';

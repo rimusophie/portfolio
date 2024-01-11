@@ -11,28 +11,23 @@ use PDOException;
 
 class SkillController extends RmsBaseController
 {
-    public function index() {
+    public function getAllRecords() {
         try {
-            $skills = Skill::all();
-            $this->data['skills'] = $skills;
-            //$this->data['skills'] = [];
+            $this->data['skills'] = Skill::all();
 
             // メンテナンスモードを取得
             $this->data['is_maintenance'] = PortfolioConfig::isPortfolioMaintenance();
-
         } catch (PDOException $e) {
             // データベース系のエラー
-            $this->data[PortfolioConstants::VAR_NAME_ERROR] = 'スキル情報の取得に失敗しました。';
-            PortfolioUtil::outputErrorLog($this->data[PortfolioConstants::VAR_NAME_ERROR], $e);
-
-            return view(PortfolioConstants::BLADE_PORTFOLIO_ERROR_500, $this->data);
+            $message = 'スキル情報の取得に失敗しました。';
+            PortfolioUtil::outputErrorLog($message, $e);
+            throw new Exception('スキル情報の取得に失敗しました。');
         } catch (Exception $e) {
             // その他エラー
-            $this->data[PortfolioConstants::VAR_NAME_ERROR] = PortfolioConstants::MSG_EXCEPTION;
-            PortfolioUtil::outputErrorLog($this->data[PortfolioConstants::VAR_NAME_ERROR], $e);
-
-            return view(PortfolioConstants::BLADE_PORTFOLIO_ERROR_500, $this->data);
+            $message = PortfolioConstants::VAR_NAME_ERROR;
+            PortfolioUtil::outputErrorLog($message, $e);
+            throw new Exception(PortfolioConstants::MSG_EXCEPTION);
         }
-        return view('skills-index', $this->data);
+        return $this->data;
     }
 }

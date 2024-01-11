@@ -1,4 +1,3 @@
 docker-compose up -d --build
 
-docker-compose exec app bash
-# コンテナに入り、bash setup.shを入力する
+docker-compose exec app bash /var/www/docker/php/setup.sh
